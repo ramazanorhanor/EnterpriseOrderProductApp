@@ -378,3 +378,36 @@ html
     </tr>
   </tbody>
 </table>
+
+
+#   Kriter Başlığı                                                  Açıklama
+1   Proje İsmi Belirleme                                            Kurumsal bağlamda anlamlı, teknik ve işlevsel isim seçilmeli.
+2   Klasör Yapısı Tanımı                                            SRP uyumlu, numaralandırılmış klasör yapısı tanımlanmalı.
+3   NuGet Paket Listesi                                             Versiyon, kullanım amacı ve çözümlediği sorun açıklanmalı.
+4   Dependency Injection – Simple Injector                          DI container konfigürasyonu, NuGet paketleri, interface eşlemeleri ve AOP uyumu eksiksiz tanımlanmalı.
+5   Class / Interface / Method Açıklamaları                         Full path, SOLID gerekçesi ve gerçek dünya karşılığı sunulmalı.
+6   Her Yapı İçin: Nedir? Ne Amaçla Yazılmıştır? Ne İşe Yarar?      Her yapının mimari bağlamda açıklaması, kullanım amacı ve gerçek dünya karşılığı detaylı olarak sunulmalı.
+7   Kod Yapılarında NuGet & Using Bilgisi Açıklaması                NuGet paketi, versiyon, using namespace ve katman bilgisi açıklama olarak eklenmeli.
+8   Yazılım Prensiplerinin Açıklanması                              Attribute, Interceptor, Decorator, AOP gibi yapılar açıklanmalı.
+9   Microsoft Word Tarzı Tablo Formatı                              Tüm tablo yapıları klasik Word düzeninde sunulmalı: satır satır hizalanmış, başlıklar kalın, açıklamalar net, üstte kopyala butonu olacak şekilde.
+10  NuGet Paketlerin Amaç ve Sorun Çözüm Açıklaması                Her paketin neye hizmet ettiği ve hangi sorunu çözdüğü açıklanmalı.
+11  DTO → Entity Dönüşüm Metodu                                     Her DTO içinde `ToEntity()` metodu tanımlanmalı.
+12  AOP Etkileşim Noktalarının Belirtilmesi                         Interceptor, attribute veya filter etkileşimleri açıkça belirtilmeli.
+13  Kodun Her Satırında Açıklama ve Gerekçe                         Her satırın ne işe yaradığı, hangi sorunu çözdüğü açıklanmalı.
+14  Statement / Expression Açıklamaları                             Kod ifadeleri mimari bağlamda açıklanmalı, performans ve okunabilirlik açısından değerlendirilmelidir.
+15  Katman Bazlı Modül Planı                                        Domain → Infrastructure → Application → UI sıralamasıyla işlenmeli.
+16  MVC Pipeline Açıklaması                                         Routing → Controller → Action → Filter → View süreci açıklanmalı.
+17  Request → Response Süreci Tablosu                               Veri akışı adım adım tablo halinde sunulmalı.
+18  Connection String Tanımı                                        Infrastructure modülünde `AppDbContext` ile birlikte tanımlanmalı.
+19  Enterprise / Production’da Kullanım Açıklaması                  Yapıların gerçek projelerde nasıl kullanıldığı, hangi riskleri çözdüğü ve nasıl test edildiği açıklanmalı.
+20  Genel Proje Özeti ve Mimari Akış Diyagramı                      Modüller, veri akışı ve çözümlediği problemler diyagramla sunulmalı.
+21  Adım Adım Süreç Tablosu                                         UI’dan DB’ye kadar olan süreç mimari bağlamda açıklanmalı.
+22  Hızlı Özet / Checkout                                           Projenin tüm modülleri, veri akışı ve teknik yapı kısa özet halinde sunulmalı.
+23  UML Class Diagram (ASCII)                                       Modüller arası ilişkiler ASCII formatında UML Class diyagramı ile gösterilmeli.
+24  UML Sequence Diagram (ASCII)                                    UI → Controller → Service → Repository → DB akışı ASCII formatında UML Sequence diyagramı ile sunulmalı.
+25  Adım Adım Enterprise LifeCycle Açıklaması                       Projenin yaşam döngüsü (init → request → persist → response) adım adım açıklanmalı.
+26  Ekran Gözlemleri Açıklaması                                     Form input → action → response zinciri yazılı olarak açıklanmalı.
+27  Debug Tabanlı Test Senaryosu                                    Gerçek kullanıcı etkileşimiyle yapılan test senaryosu adım adım yazılmalı.
+28  Yaygın Hatalar + Çözümleri                                      Modüllerde sık karşılaşılan hatalar, nedenleri ve çözüm yolları açıklanmalı.
+29  Proje Bilgileri – Tam Dokümantasyon Formatı (Microsoft Tarzı)   Tüm yapılar, açıklamalar, örnekler ve mimari kararlar Microsoft tarzı teknik dokümantasyonla sunulmalı.
+30  Teknik Terimlerin İngilizce + Türkçe + Kavramsal Açıklaması     Her teknik terim önce İngilizce, sonra Türkçesiyle yazılmalı. Ne işe yaradığı, neyi çözdüğü ve yazılımcı olarak neleri bilmek gerektiği açık ve gerekçeli şekilde anlatılmalı.

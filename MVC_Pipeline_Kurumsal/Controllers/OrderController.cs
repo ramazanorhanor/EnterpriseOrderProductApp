@@ -20,7 +20,10 @@ namespace MVC_Pipeline_Kurumsal.Controllers
         {
             _orderService = orderService;
         }
-
+        public ActionResult Index()
+        {
+            return View();
+        }
         [HttpGet]
         [LogAction]
         [Permission("User")]

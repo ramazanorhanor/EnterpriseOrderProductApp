@@ -22,7 +22,13 @@ namespace MVC_Pipeline_Kurumsal.Infrastructure.Persistence
             _context = context;
         }
 
-        public void Add(Order order) => _context.Orders.Add(order);
+        //  public void Add(Order order) => _context.Orders.Add(order);
+        public void Add(Order order)
+        {
+            _context.Orders.Add(order); // sipariş nesnesi EF context'e eklenir
+            _context.SaveChanges();         // Değişiklikler veri tabanına yazılır
+        }
+
         public Order GetById(int id) => _context.Orders.Find(id);
         public IEnumerable<Order> GetAll() => _context.Orders.ToList();
         public void Cancel(int id)
