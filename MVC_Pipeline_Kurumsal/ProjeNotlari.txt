@@ -351,3 +351,30 @@ ProductValidator, OrderValidator
 FluentValidation ile model doğrulama
 
 ValidationInterceptor mantığıyla AOP etkileşimi
+
+NuGet Paket Açıklama Tablosu – FluentValidation.MVC5
+html
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Paket Adı</th>
+      <th>Versiyon</th>
+      <th>Kullanılan Yapılar</th>
+      <th>Ne İşe Yarar</th>
+      <th>Gerçek Dünya Sorunu</th>
+      <th>Kodda Neye Hizmet Eder</th>
+      <th>AOP Etkileşimi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FluentValidation.MVC5</td>
+      <td>8.6.1</td>
+      <td>AbstractValidator<T>, RuleFor()</td>
+      <td>DTO doğrulama kurallarını tanımlar</td>
+      <td>Formdan gelen hatalı, eksik veya zararlı verileri engeller</td>
+      <td>Service methodlarına geçmeden önce veri doğruluğunu garanti eder</td>
+      <td>ValidationInterceptor ile servis çağrısından önce tetiklenir</td>
+    </tr>
+  </tbody>
+</table>

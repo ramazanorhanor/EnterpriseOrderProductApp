@@ -1,7 +1,26 @@
-﻿
-@{
-    ViewBag.Title = "Create";
+﻿<!-- Path: EnterpriseOrderProductApp.Web.Views.Order.Create.cshtml -->
+<!-- Purpose: Sipariş oluşturma formunu sunar. -->
+<!-- AOP Etkileşimi: Doğrudan yoktur, controller üzerinden dolaylı olarak loglanır ve yetki kontrolü yapılır. -->
+
+@model MVC_Pipeline_Kurumsal.Application.DTOs.OrderDto
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.ProductId)
+        @Html.TextBoxFor(m => m.ProductId)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CustomerName)
+        @Html.TextBoxFor(m => m.CustomerName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CustomerEmail)
+        @Html.TextBoxFor(m => m.CustomerEmail)
+    </div>
+    <button type="submit">Sipariş Oluştur</button>
 }
-
-<h2>Create</h2>
-

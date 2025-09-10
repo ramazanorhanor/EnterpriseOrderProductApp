@@ -1,27 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// Path: EnterpriseOrderProductApp.Web.Controllers.ProductController.cs
+// Type: Class
+// Pattern: MVC Controller
+// Purpose: Ürün işlemlerini yönetir. AOP attribute’lar ile genişletilir.
+// SOLID: SRP – Sadece ürünle ilgili HTTP işlemlerini yönetir.
+// AOP Etkileşimi: [LogAction] ile loglanır, [Permission] ile yetki kontrolü yapılır.
+
 using System.Web.Mvc;
+using MVC_Pipeline_Kurumsal.Application.Services;
+using MVC_Pipeline_Kurumsal.Application.DTOs;
+using MVC_Pipeline_Kurumsal.Attributes;
 
 namespace MVC_Pipeline_Kurumsal.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult Index()
+        private readonly ProductService _productService;
+
+        public ProductController(ProductService productService)
         {
-            return View();
+            _productService = productService;
         }
+
         [HttpGet]
+        [LogAction]
+        [Permission("Admin")]
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult Create(int id)
+        [LogAction]
+        [Permission("Admin")]
+        public ActionResult Create(ProductDto dto)
         {
-            return View();
+            if (!ModelState.IsValid) return View(dto);
+
+            _productService.Add(dto.ToEntity());
+            return RedirectToAction("Index");
         }
     }
 }
