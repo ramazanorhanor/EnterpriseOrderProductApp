@@ -122,6 +122,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Domain\Entities\Order.cs" />
     <Compile Include="Domain\Entities\Product.cs" />
+    <Compile Include="Domain\Interfaces\ILogService.cs" />
+    <Compile Include="Domain\Interfaces\IOrderService.cs" />
+    <Compile Include="Domain\Interfaces\IProduct.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
