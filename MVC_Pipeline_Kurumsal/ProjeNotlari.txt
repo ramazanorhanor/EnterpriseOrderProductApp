@@ -1,0 +1,77 @@
+﻿Harika Ramazan, şimdi gerçekten başlıyoruz 💼. “RamazanOrhan Proje Şablonu”na tam sadakatle, adım adım ilerleyeceğiz. Her şey sıfırdan, boş bir ASP.NET MVC 5 (.NET Framework 4.7.2) projesi açılmış gibi ele alınacak. Her modül, her sınıf, her interface hem mimari hem teknik gerekçelerle açıklanacak. Kodun üstünde full path olacak, AOP bileşenleri nerede devreye giriyor açıkça belirtilecek.
+
+🚀 Başlangıç: Proje Yapısı ve NuGet Paketleri
+📁 1. Proje Başlangıcı
+Visual Studio’da yeni bir ASP.NET MVC 5 (.NET Framework 4.7.2) projesi oluşturulur.
+
+Proje adı: EnterpriseOrderProductApp
+
+Proje tipi: Empty MVC (Web.config dahil)
+
+Hedef framework: .NET Framework 4.7.2
+
+📦 2. NuGet Paketleri – Versiyon ve Amaç Tablosu
+Paket Adı	Versiyon	Amaç / Açıklama
+Microsoft.AspNet.Mvc	5.3.0	ASP.NET MVC 5 framework bileşenleri
+EntityFramework	6.2.0	ORM katmanı, veri erişimi ve LINQ desteği
+NLog	4.7.2	Loglama altyapısı, file/db/console hedefleriyle uyumlu
+NLog.Web	4.9.0	ASP.NET MVC ile uyumlu layout renderer ve target desteği
+SimpleInjector	5.x	Lightweight DI container, AOP destekli interceptor tanımları
+AutoMapper	10.x	DTO ↔ Domain dönüşümleri için mapping altyapısı
+FluentValidation	9.x	Model doğrulama için AOP uyumlu validation framework
+🔧 Tüm paketler .NET Framework 4.7.2 ve MVC5 ile uyumludur. Her biri SOLID ve AOP prensiplerini destekleyen modüler yapıdadır.
+
+🧱 3. Klasör ve Dosya Yapısı – RamazanOrhan Şablonuna Göre
+Kod
+/EnterpriseOrderProductApp
+│
+├── /Domain
+│   ├── /Entities
+│   │   ├── Product.cs
+│   │   └── Order.cs
+│   ├── /Interfaces
+│   │   ├── IProduct.cs
+│   │   ├── IOrderService.cs
+│   │   └── ILogService.cs
+│
+├── /Infrastructure
+│   ├── /Persistence
+│   │   ├── AppDbContext.cs
+│   │   ├── ProductRepository.cs
+│   │   └── OrderRepository.cs
+│   ├── /Logging
+│   │   ├── NLogConfig.cs
+│   │   └── NLogTarget.cs
+│
+├── /Application
+│   ├── /Services
+│   │   ├── ProductService.cs
+│   │   └── OrderService.cs
+│   ├── /Interceptors
+│   │   ├── LoggingInterceptor.cs
+│   │   └── AuditInterceptor.cs
+│
+├── /Validation
+│   ├── ProductValidator.cs
+│   └── OrderValidator.cs
+│
+├── /Web
+│   ├── /Controllers
+│   │   ├── ProductController.cs
+│   │   └── OrderController.cs
+│   ├── /Filters
+│   │   ├── LogActionFilter.cs
+│   │   └── ExceptionFilter.cs
+│   ├── /Views
+│   │   ├── /Product
+│   │   │   └── Create.cshtml
+│   │   ├── /Order
+│   │   │   └── Create.cshtml
+│
+├── /Config
+│   ├── RouteConfig.cs
+│   ├── FilterConfig.cs
+│   ├── BundleConfig.cs
+│   └── SimpleInjectorInitializer.cs
+📌 Her klasör yalnızca kendi sorumluluğundaki bileşenleri içerir. Bu yapı SRP (Single Responsibility Principle) ve modülerlik açısından en iyi uygulamadır.
+
