@@ -15,14 +15,14 @@ namespace MVC_Pipeline_Kurumsal.Attributes
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var logger = DependencyResolver.Current.GetService<ILogService>();
+            var logger = DependencyResolver.Current.GetService<ILog>();
             var actionName = filterContext.ActionDescriptor.ActionName;
             logger.Info($"Action başlıyor: {actionName}");
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var logger = DependencyResolver.Current.GetService<ILogService>();
+            var logger = DependencyResolver.Current.GetService<ILog>();
             var actionName = filterContext.ActionDescriptor.ActionName;
             logger.Info($"Action tamamlandı: {actionName}");
         }

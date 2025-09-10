@@ -9,10 +9,10 @@ using MVC_Pipeline_Kurumsal.Domain.Entities;
 
 namespace MVC_Pipeline_Kurumsal.Domain.Interfaces
 {
-    public interface IOrderService
-    {
-        void Create(Order order);
-        Order GetById(int id);
-        void Cancel(int id);
-    }
+    //public interface IOrder
+    //{
+    //    void Create(Order order);
+    //    Order GetById(int id);
+    //    void Cancel(int id);
+    //}
 }

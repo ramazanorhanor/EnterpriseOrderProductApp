@@ -12,12 +12,12 @@ using MVC_Pipeline_Kurumsal.Domain.Interfaces;
 
 namespace MVC_Pipeline_Kurumsal.Application.Services
 {
-    public class OrderService : IOrderService
+    public class OrderService 
     {
-        private readonly ILogService _logger;
+        private readonly ILog _logger;
         private readonly OrderRepository _orderRepository;
 
-        public OrderService(OrderRepository orderRepository, ILogService logger)
+        public OrderService(OrderRepository orderRepository, ILog logger)
         {
             _orderRepository = orderRepository;
             _logger = logger;

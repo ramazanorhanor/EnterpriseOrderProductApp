@@ -13,9 +13,9 @@ namespace MVC_Pipeline_Kurumsal.Application.Interceptors
 {
     public class LoggingInterceptor : IInterceptor
     {
-        private readonly ILogService _logger;
+        private readonly ILog _logger;
 
-        public LoggingInterceptor(ILogService logger)
+        public LoggingInterceptor(ILog logger)
         {
             _logger = logger;
         }

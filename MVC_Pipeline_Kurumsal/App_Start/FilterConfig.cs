@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// Path: EnterpriseOrderProductApp.Web.Config.FilterConfig.cs
+// Type: Class
+// Purpose: Tüm filtreleri global olarak devreye alır.
+// AOP Etkileşimi: MVC pipeline başlangıcında tetiklenir.
+
+using System.Web.Mvc;
+using MVC_Pipeline_Kurumsal.Filters;
 
 namespace MVC_Pipeline_Kurumsal.App_Start
 {
     public class FilterConfig
     {
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new LogActionFilter());
+            filters.Add(new ExceptionFilter());
+            filters.Add(new CustomHeaderFilter());
+        }
     }
 }

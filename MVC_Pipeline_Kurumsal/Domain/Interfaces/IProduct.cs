@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace MVC_Pipeline_Kurumsal.Domain.Interfaces
 {
-    public interface IProduct
-    {
-        Product GetById(int id);
-        IEnumerable<Product> GetAll();
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(int id);
-    }
+    //public interface IProduct
+    //{
+    //    Product GetById(int id);
+    //    IEnumerable<Product> GetAll();
+    //    void Add(Product product);
+    //    void Update(Product product);
+    //    void Delete(int id);
+    //}
 }

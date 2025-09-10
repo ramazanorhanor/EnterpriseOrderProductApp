@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace MVC_Pipeline_Kurumsal.Infrastructure.Persistence
 {
-    public class ProductRepository : IProduct
+    public class ProductRepository 
     {
         private readonly AppDbContext _context;
 
@@ -23,7 +23,14 @@ namespace MVC_Pipeline_Kurumsal.Infrastructure.Persistence
             _context = context;
         }
 
-        public void Add(Product product) => _context.Products.Add(product);
+        // public void Add(Product product) => _context.Products.Add(product);
+        public void Add(Product product)
+        {
+            _context.Products.Add(product); // Ürün nesnesi EF context'e eklenir
+            _context.SaveChanges();         // Değişiklikler veri tabanına yazılır
+        }
+
+        // Diğer CRUD metotları...
         public void Update(Product product) => _context.Entry(product).State = EntityState.Modified;
         public void Delete(int id)
         {

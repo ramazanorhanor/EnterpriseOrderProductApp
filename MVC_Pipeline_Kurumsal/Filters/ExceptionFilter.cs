@@ -14,7 +14,7 @@ namespace MVC_Pipeline_Kurumsal.Filters
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            var logger = DependencyResolver.Current.GetService<ILogService>();
+            var logger = DependencyResolver.Current.GetService<ILog>();
             logger.Error($"[Filter] Hata oluştu: {filterContext.Exception.Message}");
         }
     }

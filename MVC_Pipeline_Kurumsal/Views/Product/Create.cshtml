@@ -1,7 +1,26 @@
-﻿
-@{
-    ViewBag.Title = "Create";
+﻿<!-- Path: EnterpriseOrderProductApp.Web.Views.Product.Create.cshtml -->
+<!-- Purpose: Yeni ürün oluşturma formunu sunar -->
+<!-- AOP Etkileşimi: Doğrudan yoktur, ancak controller üzerinden [LogAction], [Permission], ValidationInterceptor tetiklenir -->
+<!-- Gerçek Dünya Sorunu: Kullanıcıdan eksik veya hatalı veri alınmasını engeller -->
+
+@model MVC_Pipeline_Kurumsal.Application.DTOs.ProductDto
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "0.01" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
 }
-
-<h2>Create</h2>
-

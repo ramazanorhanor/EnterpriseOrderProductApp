@@ -20,10 +20,13 @@ namespace MVC_Pipeline_Kurumsal.Controllers
         {
             _productService = productService;
         }
-
+        public ActionResult Index()
+        {
+            return View();
+        }
         [HttpGet]
         [LogAction]
-        [Permission("Admin")]
+       // [Permission("Admin")]
         public ActionResult Create()
         {
             return View();
@@ -31,7 +34,7 @@ namespace MVC_Pipeline_Kurumsal.Controllers
 
         [HttpPost]
         [LogAction]
-        [Permission("Admin")]
+       // [Permission("Admin")]
         public ActionResult Create(ProductDto dto)
         {
             if (!ModelState.IsValid) return View(dto);

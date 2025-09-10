@@ -8,16 +8,17 @@
 
 using MVC_Pipeline_Kurumsal.Domain.Entities;
 using MVC_Pipeline_Kurumsal.Domain.Interfaces;
+using MVC_Pipeline_Kurumsal.Infrastructure.Persistence;
 using System.Collections.Generic;
 
 namespace MVC_Pipeline_Kurumsal.Application.Services
 {
-    public class ProductService : IProduct
+    public class ProductService 
     {
-        private readonly ILogService _logger;
-        private readonly IProduct _productRepository;
+        private readonly ILog _logger;
+        private readonly ProductRepository _productRepository;
 
-        public ProductService(IProduct productRepository, ILogService logger)
+        public ProductService(ProductRepository productRepository, ILog logger)
         {
             _productRepository = productRepository;
             _logger = logger;

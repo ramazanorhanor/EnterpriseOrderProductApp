@@ -7,6 +7,7 @@
 // AOP Etkileşimi: OrderService → Create() çağrısı interceptor ile loglanır.
 
 using MVC_Pipeline_Kurumsal.Domain.Entities;
+using MVC_Pipeline_Kurumsal.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
