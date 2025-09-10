@@ -197,3 +197,37 @@ AOP Etkileşimi	Doğrudan yoktur. Ancak ProductService.Create() çağrıldığı
   </tbody>
 </table>
 Domain Modülü tamamlandı ✅
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Dosya</th>
+      <th>Sorumluluk</th>
+      <th>SOLID Prensibi</th>
+      <th>AOP Etkileşimi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NLogConfig.cs</td>
+      <td>Loglama yapılandırmasını başlatır</td>
+      <td>SRP</td>
+      <td>Interceptor’lar bu yapı üzerinden loglama yapar</td>
+    </tr>
+    <tr>
+      <td>NLogTarget.cs</td>
+      <td>Dosya tabanlı log hedefini tanımlar</td>
+      <td>SRP</td>
+      <td>LoggingInterceptor logları bu hedefe yönlendirir</td>
+    </tr>
+  </tbody>
+</table>
+
+Güncel Durum: Infrastructure Modülü Tamamlandı
+Yapı	Durum	Açıklama
+AppDbContext	✅	EF 6.2 ile DB bağlantısı
+ProductRepository	✅	Product veri erişimi
+OrderRepository	✅	Order veri erişimi
+NLogConfig	✅	Loglama yapılandırması
+NLogTarget	✅	Log hedefi tanımı (yeni eklendi)
+Şimdi sırada Application Modülü var:
