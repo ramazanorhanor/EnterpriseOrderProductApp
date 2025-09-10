@@ -75,3 +75,125 @@ Kod
 │   └── SimpleInjectorInitializer.cs
 📌 Her klasör yalnızca kendi sorumluluğundaki bileşenleri içerir. Bu yapı SRP (Single Responsibility Principle) ve modülerlik açısından en iyi uygulamadır.
 
+4. Kod Üstü Açıklama Formatı (Her Yapı İçin Zorunlu)
+Her sınıfın üstüne şu formatta açıklama eklenecek:
+
+csharp
+// Path: EnterpriseOrderProductApp.Application.Services.OrderService.cs
+// Type: Class
+// Implements: IOrderService
+// Pattern: Service Layer (OOP), Intercepted (AOP)
+// Purpose: Order işlemlerinin iş mantığını içerir. LoggingInterceptor ile sarılır.
+🔍 Bu açıklama, kodun mimari bağlamını ve teknik terimini netleştirir. Takım içi okunabilirliği ve sürdürülebilirliği artırır.
+
+🧩 5. AOP Bileşenleri Kullanım Tablosu (Şablona Dahil)
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Bileşen Türü</th>
+      <th>Kullanıldığı Katman / Sınıf</th>
+      <th>Devreye Girdiği Nokta</th>
+      <th>Teknik Terim</th>
+      <th>Açıklama</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Interceptor</td>
+      <td>ILoggingInterceptor, IAuditInterceptor → OrderService, ProductService</td>
+      <td>Service method çağrısı öncesi/sonrası</td>
+      <td>AOP – Proxy</td>
+      <td>Method sarımı ile loglama, izleme, hata yakalama</td>
+    </tr>
+    <tr>
+      <td>Attribute</td>
+      <td>[LogAction], [Permission], [ExceptionHandler] → Controller Action’ları</td>
+      <td>Action method metadata’sı</td>
+      <td>Decorator Pattern</td>
+      <td>Method davranışını genişletir, yetki ve loglama sağlar</td>
+    </tr>
+    <tr>
+      <td>Filter</td>
+      <td>LogActionFilter, ExceptionFilter → Controller seviyesinde</td>
+      <td>OnActionExecuting, OnActionExecuted</td>
+      <td>ActionFilter</td>
+      <td>Cross-cutting concern’leri yönetir</td>
+    </tr>
+    <tr>
+      <td>Validation Interceptor</td>
+      <td>FluentValidation → DTO’lar (ProductDto, OrderDto)</td>
+      <td>Model binding sonrası, service çağrısından önce</td>
+      <td>AOP – Validation</td>
+      <td>DTO doğruluğunu kontrol eder, hata durumunda işlem durdurur</td>
+    </tr>
+    <tr>
+      <td>Result Filter</td>
+      <td>CustomHeaderFilter, ResponseAuditFilter → Controller veya global</td>
+      <td>OnResultExecuting, OnResultExecuted</td>
+      <td>ResultFilter</td>
+      <td>Response manipülasyonu, audit trail ekleme</td>
+    </tr>
+  </tbody>
+</table>
+
+
+Bu temel yapı artık elimizde. Bundan sonraki her modülde bu şablona sadık kalacağız. Kod yazarken:
+
+Full path belirtilecek
+
+Kod üstü açıklama eklenecek
+
+AOP bileşenleri nerede devreye giriyor açıklanacak
+
+SOLID prensipleri gerekçelendirilecek
+
+Hazırsan şimdi Domain Modülüne geçelim: Product, Order entity’lerini ve IProduct, IOrderService, ILogService interface’lerini tanımlayalım. Başlayayım mı?
+
+Domain Modülü İçeriği
+Product ve Order entity’leri
+
+IProduct, IOrderService, ILogService interface’leri
+
+Her yapının üstünde full path, açıklama, teknik terim, SOLID gerekçesi olacak
+
+AOP ile nerede etkileşime girdiği belirtilecek
+
+
+Özellik	Açıklama
+Entity	Domain katmanında, veri modelini temsil eder.
+SRP	Sadece veri taşıma ve tanımlama sorumluluğu vardır.
+EF 6.2	Table, Key, Required gibi attribute’lar EF tarafından yorumlanır.
+AOP Etkileşimi	Doğrudan yoktur. Ancak ProductService.Create() çağrıldığında, o method interceptor ile loglanır.
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>Sorumluluk</th>
+      <th>SOLID Prensibi</th>
+      <th>AOP Etkileşimi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IProduct</td>
+      <td>Product veri erişim operasyonlarını soyutlar</td>
+      <td>ISP</td>
+      <td>ProductService üzerinden çağrıldığında interceptor ile loglanır</td>
+    </tr>
+    <tr>
+      <td>IOrderService</td>
+      <td>Order iş mantığını soyutlar</td>
+      <td>DIP</td>
+      <td>OrderService.Create() interceptor ile loglanır ve auditlenir</td>
+    </tr>
+    <tr>
+      <td>ILogService</td>
+      <td>Loglama işlemlerini soyutlar</td>
+      <td>DIP</td>
+      <td>Interceptor’lar bu interface üzerinden loglama yapar</td>
+    </tr>
+  </tbody>
+</table>
+Domain Modülü tamamlandı ✅

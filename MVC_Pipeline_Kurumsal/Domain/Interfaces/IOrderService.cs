@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Path: EnterpriseOrderProductApp.Domain.Interfaces.IOrderService.cs
+// Type: Interface
+// Pattern: Service Interface (OOP)
+// Purpose: Sipariş işlemlerinin iş mantığını soyutlar.
+// SOLID: DIP – Controller, bu interface’e bağımlıdır; somut sınıfa değil.
+// AOP Etkileşimi: OrderService.Create() methodu, LoggingInterceptor ve AuditInterceptor tarafından sarılır.
+
+using MVC_Pipeline_Kurumsal.Domain.Entities;
 
 namespace MVC_Pipeline_Kurumsal.Domain.Interfaces
 {
-    interface IOrderService
+    public interface IOrderService
     {
+        void Create(Order order);
+        Order GetById(int id);
+        void Cancel(int id);
     }
 }
