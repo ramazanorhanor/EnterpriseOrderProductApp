@@ -1,11 +1,37 @@
-﻿using System;
+﻿// Path: EnterpriseOrderProductApp.Application.Services.ProductService.cs
+// Type: Class
+// Implements: IProductService
+// Pattern: Service Layer (OOP), Intercepted (AOP)
+// Purpose: Ürünle ilgili iş mantığını taşır. LoggingInterceptor ile sarılır.
+// SOLID: SRP – Sadece ürün işlemleriyle ilgilenir. DIP – Interface’e bağımlıdır.
+// AOP Etkileşimi: Tüm methodlar LoggingInterceptor tarafından loglanır.
+
+using MVC_Pipeline_Kurumsal.Domain.Entities;
+using MVC_Pipeline_Kurumsal.Domain.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MVC_Pipeline_Kurumsal.Application.Services
 {
-    public class ProductService
+    public class ProductService : IProduct
     {
+        private readonly ILogService _logger;
+        private readonly IProduct _productRepository;
+
+        public ProductService(IProduct productRepository, ILogService logger)
+        {
+            _productRepository = productRepository;
+            _logger = logger;
+        }
+
+        public void Add(Product product)
+        {
+            _logger.Info($"ProductService.Add() çağrıldı: {product.Name}");
+            _productRepository.Add(product);
+        }
+
+        public void Update(Product product) => _productRepository.Update(product);
+        public void Delete(int id) => _productRepository.Delete(id);
+        public Product GetById(int id) => _productRepository.GetById(id);
+        public IEnumerable<Product> GetAll() => _productRepository.GetAll();
     }
 }

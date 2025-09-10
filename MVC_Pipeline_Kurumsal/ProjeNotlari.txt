@@ -1,4 +1,6 @@
-﻿Harika Ramazan, şimdi gerçekten başlıyoruz 💼. “RamazanOrhan Proje Şablonu”na tam sadakatle, adım adım ilerleyeceğiz. Her şey sıfırdan, boş bir ASP.NET MVC 5 (.NET Framework 4.7.2) projesi açılmış gibi ele alınacak. Her modül, her sınıf, her interface hem mimari hem teknik gerekçelerle açıklanacak. Kodun üstünde full path olacak, AOP bileşenleri nerede devreye giriyor açıkça belirtilecek.
+﻿https://copilot.microsoft.com/chats/sqooUs7TDWe2Dc5bnxzmG
+
+Harika Ramazan, şimdi gerçekten başlıyoruz 💼. “RamazanOrhan Proje Şablonu”na tam sadakatle, adım adım ilerleyeceğiz. Her şey sıfırdan, boş bir ASP.NET MVC 5 (.NET Framework 4.7.2) projesi açılmış gibi ele alınacak. Her modül, her sınıf, her interface hem mimari hem teknik gerekçelerle açıklanacak. Kodun üstünde full path olacak, AOP bileşenleri nerede devreye giriyor açıkça belirtilecek.
 
 🚀 Başlangıç: Proje Yapısı ve NuGet Paketleri
 📁 1. Proje Başlangıcı
@@ -231,3 +233,41 @@ OrderRepository	✅	Order veri erişimi
 NLogConfig	✅	Loglama yapılandırması
 NLogTarget	✅	Log hedefi tanımı (yeni eklendi)
 Şimdi sırada Application Modülü var:
+
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Dosya</th>
+      <th>Sorumluluk</th>
+      <th>SOLID Prensibi</th>
+      <th>AOP Etkileşimi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ProductService.cs</td>
+      <td>Ürün iş mantığını taşır</td>
+      <td>SRP, DIP</td>
+      <td>LoggingInterceptor ile methodlar loglanır</td>
+    </tr>
+    <tr>
+      <td>OrderService.cs</td>
+      <td>Sipariş iş mantığını taşır</td>
+      <td>SRP, DIP</td>
+      <td>LoggingInterceptor + AuditInterceptor uygulanır</td>
+    </tr>
+    <tr>
+      <td>LoggingInterceptor.cs</td>
+      <td>Method çağrısı öncesi/sonrası loglama</td>
+      <td>OCP</td>
+      <td>DI Container üzerinden tüm servis methodlarını sarar</td>
+    </tr>
+    <tr>
+      <td>AuditInterceptor.cs</td>
+      <td>Kritik işlemlerde kullanıcı izleme</td>
+      <td>OCP</td>
+      <td>OrderService.Create() gibi methodlara uygulanır</td>
+    </tr>
+  </tbody>
+</table>
