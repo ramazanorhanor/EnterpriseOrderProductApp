@@ -1,0 +1,154 @@
+﻿
+ASP.NET MVC Framework Pipeline’ını hem compile-time hem de runtime aşamalarıyla adım adım açıklamak, mimariyi tam anlamıyla kavramak adına çok değerli. Aşağıda bu yolculuğu detaylı ve kurumsal düzeyde ele alıyorum:
+
+🧠 Compile-Time Aşamaları (Hazırlık Süreci)
+Bu aşamalar, uygulama derlenmeden önce ve derlenirken gerçekleşir:
+
+1. Route Tanımları (RouteConfig)
+RouteConfig.RegisterRoutes(RouteCollection routes) içinde tanımlanır.
+
+Route tabloları derlenir, URL eşleştirme mantığı hazırlanır.
+
+Bu aşamada MapRoute ile Controller/Action/View eşleşmeleri yapılandırılır.
+
+2. Controller ve Action Method İmzaları
+Controller sınıfları Controller taban sınıfından türetilir.
+
+Action method’lar public olmalı ve ActionResult veya türevlerini döndürmelidir.
+
+Derleyici, method imzalarını kontrol eder, overload’ları ayıklar.
+
+3. View’ların Razor Derlemesi
+.cshtml dosyaları Razor Engine tarafından derlenir.
+
+@model, @Html, @Url gibi yardımcılar compile-time’da kontrol edilir.
+
+View’lar BuildProviders aracılığıyla C# sınıflarına dönüştürülür.
+
+🚀 Runtime Aşamaları (Request → Response Yolculuğu)
+Her HTTP isteği geldiğinde aşağıdaki adımlar izlenir:
+
+1. Application Başlatma (Global.asax)
+Application_Start() tetiklenir.
+
+RouteConfig, FilterConfig, BundleConfig gibi yapılandırmalar burada çağrılır.
+
+2. Routing (URL Eşleştirme)
+RouteTable.Routes içindeki kurallara göre gelen URL eşleştirilir.
+
+UrlRoutingModule devreye girer ve uygun RouteHandler seçilir.
+
+3. MVC Handler (MvcHandler)
+IHttpHandler arayüzünü uygular.
+
+ProcessRequest() ile Controller seçimi başlar.
+
+4. Controller Factory
+DefaultControllerFactory veya özel bir factory Controller’ı oluşturur.
+
+Dependency Injection (örneğin Simple Injector) burada devreye girer.
+
+5. Action Selector & Invoker
+ActionNameSelectorAttribute ile uygun Action method seçilir.
+
+ActionInvoker methodu çağırır.
+
+6. Model Binding
+HTTP Request içeriği (Form, QueryString, RouteData) parametrelere bağlanır.
+
+ModelBinder sınıfları devreye girer.
+
+7. Action Filters
+OnActionExecuting, OnActionExecuted gibi filtreler çalışır.
+
+Authorize, ValidateAntiForgeryToken, CustomLogFilter gibi filtreler burada devreye girer.
+
+8. Action Method Execution
+Seçilen method çalıştırılır.
+
+ViewResult, JsonResult, RedirectResult gibi sonuçlar döner.
+
+9. Result Filters
+OnResultExecuting, OnResultExecuted gibi filtreler tetiklenir.
+
+10. View Engine & Rendering
+ViewEngine (RazorViewEngine) uygun .cshtml dosyasını bulur.
+
+View, ViewResult.ExecuteResult() ile render edilir.
+
+11. Response Gönderimi
+Render edilen HTML, HTTP Response olarak istemciye gönderilir.
+
+
+ASP.NET MVC Pipeline – Request’ten Response’a Tam Yolculuk
+1. İstek Sunucuya Ulaşır
+Tarayıcıdan gelen HTTP isteği IIS tarafından karşılanır.
+
+IIS, ASP.NET uygulamasını çalıştırmak üzere w3wp.exe (Worker Process) üzerinden HttpRuntime’ı tetikler.
+
+2. Application Başlatma (Global.asax)
+Application_Start() metodu ilk istekle birlikte tetiklenir.
+
+Route tanımları (RouteConfig), filtreler (FilterConfig), bundle’lar (BundleConfig) burada yüklenir.
+
+Bu aşama compile-time’da tanımlanmış yapıların runtime’a aktarımıdır.
+
+3. Routing Modülü Devreye Girer
+UrlRoutingModule gelen URL’yi RouteTable.Routes ile eşleştirir.
+
+Eşleşen route’a göre RouteData oluşturulur.
+
+Bu veri, hangi Controller ve Action’ın çağrılacağını belirler.
+
+4. MVC Handler Oluşur (MvcHandler)
+IHttpHandler arayüzünü uygular.
+
+RequestContext üzerinden Controller ve Action bilgisi alınır.
+
+MvcHandler.ProcessRequest() çağrılır.
+
+5. Controller Factory Devreye Girer
+DefaultControllerFactory veya özel bir IControllerFactory Controller’ı oluşturur.
+
+Dependency Injection Container (örneğin Simple Injector) burada devreye girer.
+
+Constructor parametreleri çözülür, Controller örneği oluşturulur.
+
+6. Action Method Seçimi
+ActionNameSelectorAttribute ile uygun Action metodu belirlenir.
+
+Overload’lar, HTTP verb’ler ([HttpGet], [HttpPost]) dikkate alınır.
+
+7. Model Binding
+ModelBinder gelen Form, QueryString, RouteData gibi kaynaklardan parametreleri Action method’a bağlar.
+
+DefaultModelBinder veya özel binder’lar devreye girer.
+
+Validation işlemleri yapılır (DataAnnotations, ModelState.IsValid).
+
+8. Action Filters Çalışır
+[Authorize], [ValidateAntiForgeryToken], [CustomLog] gibi filtreler sırasıyla tetiklenir.
+
+OnActionExecuting() → Action → OnActionExecuted() sıralaması izlenir.
+
+9. Action Method Çalıştırılır
+Controller içindeki ilgili Action method tetiklenir.
+
+İş mantığı çalışır, veri işlenir, ViewResult, JsonResult, RedirectResult gibi bir ActionResult döner.
+
+10. Result Filters Devreye Girer
+OnResultExecuting() → ExecuteResult() → OnResultExecuted() sıralaması izlenir.
+
+Örneğin loglama, cacheleme, response manipülasyonu burada yapılabilir.
+
+11. View Engine Render İşlemi
+ViewResult ise RazorViewEngine uygun .cshtml dosyasını bulur.
+
+ViewData, TempData, Model gibi veriler View’a aktarılır.
+
+Razor Engine, .cshtml dosyasını HTML’ye dönüştürür.
+
+12. Response Gönderimi
+Render edilen HTML, HttpResponse üzerinden istemciye gönderilir.
+
+Tarayıcı bu HTML’yi işler ve kullanıcıya gösterir.

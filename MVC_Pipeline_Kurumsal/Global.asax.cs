@@ -1,4 +1,4 @@
-using MVC_Pipeline_Kurumsal.App_Start;
+﻿using MVC_Pipeline_Kurumsal.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,9 @@ namespace MVC_Pipeline_Kurumsal
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-         //   SimpleInjectorInitializer.Initialize(); // Manuel �a�r�
+         //   SimpleInjectorInitializer.Initialize(); // Manuel çaðrý
         }
     }
 }
+//Runtime Aşamaları (Request → Response Yolculuğu)
+// 1. Application Başlatma (Global.asax)

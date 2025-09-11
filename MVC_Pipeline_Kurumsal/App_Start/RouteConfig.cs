@@ -21,3 +21,5 @@ namespace MVC_Pipeline_Kurumsal
         }
     }
 }
+//Compile-Time Aşamaları (Hazırlık Süreci)
+// 1 RouteConfig.RegisterRoutes(RouteCollection routes) içinde tanımlanır.
